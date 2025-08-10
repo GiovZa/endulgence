@@ -1,0 +1,456 @@
+// Variables
+$main-bg-color: #032020;
+$main-text-color: #fff;
+$main-color: #44a260b4;
+$secondary-color: #247a32c2;
+$header-bg-color: #359f58ce;
+$background-color: #76af8ddc;
+// $header-bg-color: #232323;
+
+// Mixins
+@mixin center-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@mixin style-text {
+    font-weight: bold;
+    font-size: 18px;
+    margin: 20px 0;
+    color: white;
+}
+
+// Animations
+@keyframes animatetop {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+// Header
+header {
+    background-color: $header-bg-color;
+    color: $main-text-color;
+    position: fixed; /* Stick to the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease; /* Smooth resizing transition */
+    z-index: 100; /* Ensure it's above other content */
+    padding: 5px 0; /* Add some padding to the navbar */
+}
+
+/* Adjusts the size and font size when scrolling down */
+header.scrolled {
+    background-color: $main-bg-color; 
+    font-size: 15px;
+    padding: 0px 0;
+}
+
+#logo {
+    // max-height: 60px;
+    margin: 8px auto 5px 8px;
+}
+
+.link-list {
+    @include center-element();
+    font-size: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.link-list li {margin: 0 30px;}
+
+.link-list a {
+    @include style-text();
+    font-weight: bold;
+    text-decoration: none;
+    color: $main-text-color;
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.link-list a:hover {
+    font-weight: bold;
+    color: #c094c9;
+}
+
+nav a.active {
+    font-weight: bold; /* Style the active link, e.g., make it bold */
+    color: $secondary-color;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overscroll-behavior: none;
+
+    background-color: $background-color;
+}
+
+.card {
+    text-align: center;
+    background-color: $main-color;
+    color: #ffffff;
+    padding: 50px 0px;     
+    margin: 10% auto;
+}
+
+.card img {
+    width: 200px;
+    height: 200px;
+    margin: 10px auto; /* Center the image horizontally */
+    border-radius: 15%; /* Makes the image look like a circle */
+    display: block; /* Remove any default spacing below the image */
+    padding: 20px;
+}
+
+.card h1 {
+    font-size: 32px;
+    margin: 20px auto; /* Center the heading horizontally */
+    padding: 20px;
+}
+
+.card p, a{
+    @include style-text();
+}
+
+/* CONTACT
+   ------------------------------------------------------------------ */
+   #contact.card {
+    @include center-element();
+    flex-direction: column;
+    gap: 1.25rem;               /* space between heading, info, form */
+    padding: clamp(2rem, 4vw, 3.5rem) 1.25rem;
+    max-width: 900px;           /* keep it from stretching too wide */
+    margin: 8% auto;            /* matches your .card spacing */
+  
+    h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: $main-text-color;
+    }
+  
+    /* Info list (email/phone) */
+    ul {
+      @include center-element();
+      gap: 1.25rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        color: rgba($main-text-color, 0.85);
+        a {
+          color: $main-text-color;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+          &:hover { color: $secondary-color; }
+        }
+      }
+    }
+  
+    /* Form layout */
+    form {
+      width: min(800px, 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;   /* two columns on desktop */
+      gap: 1rem 1.25rem;
+      margin-top: .5rem;
+  
+      /* Stack label over control */
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        text-align: left;
+        font-weight: 600;
+        color: $main-text-color;
+      }
+  
+      /* Inputs + textarea base styles */
+      input[type="email"],
+      textarea,
+      input[type="text"],
+      input[type="tel"] {
+        font: inherit;
+        padding: .75rem .9rem;
+        border-radius: .75rem;
+        border: 2px solid rgba(255,255,255,.25);
+        background: #fff;
+        color: #111;
+        outline: none;
+  
+        &:focus-visible {
+          border-color: $secondary-color;
+          box-shadow: 0 0 0 .2rem rgba($secondary-color, .35);
+        }
+      }
+  
+      /* Make message span full width */
+      textarea {
+        min-height: 9rem;
+        grid-column: 1 / -1;
+        resize: vertical;
+      }
+  
+      /* Button aligned to the right on desktop */
+      button[type="submit"] {
+        justify-self: end;
+        grid-column: 2;                 /* right column */
+        padding: .7rem 1.1rem;
+        border: 0;
+        border-radius: 999px;
+        background: $secondary-color;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform .05s ease, box-shadow .2s ease;
+  
+        &:hover { box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+        &:active { transform: translateY(1px); }
+      }
+    }
+  
+    /* Mobile: single column + full-width button */
+    @media (max-width: 640px) {
+      form {
+        grid-template-columns: 1fr;
+  
+        button[type="submit"] {
+          grid-column: 1;
+          justify-self: stretch;
+        }
+      }
+  
+      ul { flex-direction: column; }
+    }
+  }
+  
+  /* Optional: subtle invalid state (when not focused) */
+  #contact input:invalid:not(:focus),
+  #contact textarea:invalid:not(:focus) {
+    border-color: rgba(255, 80, 80, .6);
+  }  
+
+#Order-Form {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    color: $main-text-color;
+}
+
+.about-me-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-me-column {
+    flex-basis: calc(30%);
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.about-me-column i {
+    padding: 20px 0;
+}
+
+.skill-list {
+    @include center-element();
+    font-size: 15px;
+    list-style-type: none;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.skill-list li {
+    margin: 0 10px; /* Add space between links */
+    padding: 30px 0 10px 0px; /* Remove left padding for the first list item */
+}
+
+// Portfolio
+#Portfolio h1, #Previous-Works h1 {
+    font-size: 40px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    color: $main-text-color;
+}
+  
+#portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; /* Adjust the gap between buttons */
+    padding: 0 20px;
+}
+
+#Portfolio i, h2 {
+    margin: 5px auto;
+    padding: 20px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0,0,0,0.7); /* Black with opacity */
+}
+
+.modal-button {
+    background-color: lightgreen; 
+    border-radius: 30px;
+    margin: 10% 0;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    padding-bottom: 10px;
+    background-color: $secondary-color;
+    color: $main-text-color;
+}
+  
+.modal-body {padding: 2px 16px;}
+
+.modal-body  a{
+    color: black;
+    text-decoration: none;
+}
+  
+.modal-footer {
+    padding: 5px 16px;
+    background-color: $secondary-color;
+    color: $main-text-color;
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $main-text-color;
+    width: 600px; /* Adjust the maximum width as needed */
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    max-height: 70vh; /* Set the maximum height to 80% of the viewport height */
+    overflow-y: auto; /* Enable vertical scrolling for overflowed content */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus, .modal-button:hover {
+    color: $main-text-color;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-button:hover {box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.597);}
+
+// Previous Works
+#previous-works {
+    @include center-element();
+    padding: 0px;
+    flex-direction: column; /* Stack child elements vertically */
+    position: relative; /* Create a positioning context for absolute positioning */
+}
+
+#previous-works h1 {
+    margin: 0;
+}
+
+/* Buttons: anchor to sides, not with margins */
+.prev, .next {
+    position: absolute;
+    background-color: #333333af;
+    color: #fff;
+    font-size: 24px;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+  }
+
+.prev { left: 25%; }
+.next { right: 25%; }
+
+/* Carousel track */
+.carousel {
+    display: flex;
+    overflow: hidden;
+    height: 850px; /* if you want a fixed viewport height */
+}
+
+/* Each slide fills the viewport width and centers its content */
+.slide {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* vertically center card if shorter than 600px */
+    transition: transform 0.5s ease;
+}
+
+/* Card gets a predictable layout */
+.cake-card {
+    @extend .card;
+    width: min(75%, 900px);
+    // height: 700px;
+    // background-color: $secondary-color;
+    margin-top: 3%;
+    padding: 30px 0px;
+}
+
+/* Create a FIXED image area using aspect-ratio */
+.cake-card .media {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* pick 1/1, 4/3, 16/9 — but keep it consistent */
+    overflow: hidden;
+    display: block;
+    padding: 0;
+}
+
+/* Image fills the media box without affecting layout */
+.cake-card .media img {
+    width: 90%;
+    height: 100%;
+    // object-fit: cover;        /* fills, crops evenly */
+    // height: 90%;
+    // object-fit: cover;   /* cover keeps it cropped consistently */
+    display: block;      /* removes inline-gap */
+    border-radius: 10%; /* Makes the image look like a circle */
+    padding: 0;
+}
+
+/* Title/content below the image */
+.cake-card h1 {
+    padding: 0;
+    margin: 0;
+}  
+
+// footer styling
+#footer {
+    background-color: $main-bg-color;
+    color: $main-text-color;
+    padding: 20px;
+}
+
+#footer-copyright {
+    padding-top: 15px;
+    color:#d1cfcf;
+    text-align: center;
+}
+
+// Responsiveness
+@media (max-width: 1366px) {
+    // Adjust styles for 1366x768 resolution
+    #portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px; /* Adjust the gap between buttons */
+    }
+}
