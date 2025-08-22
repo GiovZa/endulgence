@@ -37,7 +37,7 @@ window.addEventListener('scroll', () => {
 });
 
 
-const navLinks = document.querySelectorAll('nav a');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
 const navbar = document.querySelector('header');
 
 // Scroll to section when navbar link is clicked

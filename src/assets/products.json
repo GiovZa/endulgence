@@ -1,0 +1,8 @@
+[
+  { "id": "ube_cake",        "name": "Ube Cake",        "price": 5, "image": "/assets/ube_cake.png" },
+  { "id": "strawberry_cake", "name": "Strawberry Cake", "price": 10, "image": "/assets/strawberry_cake.png" },
+  { "id": "mango_cake",      "name": "Mango Cake",      "price": 7, "image": "/assets/mango_cake.png" },
+  { "id": "mint_cake",       "name": "Mint Cake",       "price": 9, "image": "/assets/mint_cake.png" },
+  { "id": "tier_cake",       "name": "Tier Cake",       "price": 2, "image": "/assets/tier_cake.png" },
+  { "id": "heart_cake",      "name": "Heart Cake",      "price": 1, "image": "/assets/heart_cake.png" }
+]

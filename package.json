@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "CS498RK MP1",
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && webpack-dev-server",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && webpack"
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack-dev-server",
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider webpack"
   },
   "author": "UIUC Web Programming Staff",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "autoprefixer": "^10.3.3",
     "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^9.0.1",
+    "cross-env": "^10.0.0",
     "css-loader": "^6.2.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.3.2",
